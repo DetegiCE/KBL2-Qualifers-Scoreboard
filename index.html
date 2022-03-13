@@ -13,12 +13,12 @@
             var url = 'https://api.github.com/repos/DetegiCE/KBL2-Qualifers-Scoreboard/releases';
             $.getJSON(url, function(data) {
                 tag_name = data[0].tag_name;
-                var baseurl = 'https://github.com/DetegiCE/KBL2-Qualifers-Scoreboard/releases/download/'
+                var baseurl = 'https://cors-rbk.herokuapp.com/https://github.com/DetegiCE/KBL2-Qualifers-Scoreboard/releases/download/'
                 var score1 = baseurl + tag_name + '/scores1.json';
                 var score2 = baseurl + tag_name + '/scores2.json';
                 var score3 = baseurl + tag_name + '/scores3.json';
                 $.ajax({
-                    dataType: 'jsonp',
+                    dataType: 'json',
                     url: score1,
                     success: function(data) {
                         console.log(data);
