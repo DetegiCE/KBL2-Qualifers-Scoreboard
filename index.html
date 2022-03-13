@@ -14,9 +14,9 @@
             $.getJSON(url, function(data) {
                 tag_name = data[0].tag_name;
                 var baseurl = 'https://github.com/DetegiCE/KBL2-Qualifers-Scoreboard/releases/download/'
-                var score1 = baseurl + tag_name + '/scores1.json';
-                var score2 = baseurl + tag_name + '/scores2.json';
-                var score3 = baseurl + tag_name + '/scores3.json';
+                var score1 = baseurl + tag_name + '/scores1.json?callback=?';
+                var score2 = baseurl + tag_name + '/scores2.json?callback=?';
+                var score3 = baseurl + tag_name + '/scores3.json?callback=?';
                 $.getJSON(score1, function(data) {
                     console.log(data);
                 })
