@@ -21,22 +21,51 @@
                     dataType: 'json',
                     url: score1,
                     success: function(data) {
-                        console.log(data.player);
-                        console.log(data.player[0]);
+                        data.player.forEach(function(elem) {
+                            $('#goon1').innerHTML += `<tr>
+                                <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
+                                <td>${elem['1f85c']}</td>
+                                <td>${elem['1cf6f']}</td>
+                                <td>${elem['228a0']}</td>
+                                <td>${elem['1f0de']}</td>
+                                <td>${elem['1be93']}</td>
+                                <td>${elem['2215c']}</td>
+                                </tr>`;
+                        });
                     }
                 });
                 $.ajax({
                     dataType: 'json',
                     url: score2,
                     success: function(data) {
-                        console.log(data);
+                        data.player.forEach(function(elem) {
+                            $('#goon2').innerHTML += `<tr>
+                                <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
+                                <td>${elem['1a994']}</td>
+                                <td>${elem['1efae']}</td>
+                                <td>${elem['13de6']}</td>
+                                <td>${elem['d46b']}</td>
+                                <td>${elem['d485']}</td>
+                                <td>${elem['197d4']}</td>
+                                </tr>`;
+                        });
                     }
                 });
                 $.ajax({
                     dataType: 'json',
                     url: score3,
                     success: function(data) {
-                        console.log(data);
+                        data.player.forEach(function(elem) {
+                            $('#goon3').innerHTML += `<tr>
+                                <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
+                                <td>${elem['21c49']}</td>
+                                <td>${elem['1bbb6']}</td>
+                                <td>${elem['22471']}</td>
+                                <td>${elem['1506e']}</td>
+                                <td>${elem['d2d2']}</td>
+                                <td>${elem['21fae']}</td>
+                                </tr>`;
+                        });
                     }
                 });
             });
@@ -44,21 +73,58 @@
     </script>
 </head>
 <body>
-<h1>1군</h1>
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col"></th>
-        <th scope="col">Butterfly Twist</th>
-        <th scope="col">T+ VS SHARK</th>
-        <th scope="col">Brain Power</th>
-        <th scope="col">Climax (Kobaryo’s FTN-Remix)	</th>
-        <th scope="col">Faithful dog “Hachi”</th>
-        <th scope="col">Date 2 (From “Your Name”)</th>
-    </tr>
-    </thead>
-    <tbody id="goon1">
-    </tbody>
-</table>
+<div id="container">
+    <h1>1군</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col" class="ssid">#</th>
+            <th scope="col" class="song">Butterfly Twist</th>
+            <th scope="col" class="song">T+ VS SHARK</th>
+            <th scope="col" class="song">Brain Power</th>
+            <th scope="col" class="song">Climax (Kobaryo’s FTN-Remix)	</th>
+            <th scope="col" class="song">Faithful dog “Hachi”</th>
+            <th scope="col" class="song">Date 2 (From “Your Name”)</th>
+        </tr>
+        </thead>
+        <tbody id="goon1">
+        </tbody>
+    </table>
+    <hr>
+    <h1>2군</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col" class="ssid">#</th>
+            <th scope="col" class="song">社会距離 (feat.可不)</th>
+            <th scope="col" class="song">phony</th>
+            <th scope="col" class="song">Ultimate Ascension</th>
+            <th scope="col" class="song">Maze No.9</th>
+            <th scope="col" class="song">Chocolate Missile</th>
+            <th scope="col" class="song">Wocky - VS. Kapi Mod OST</th>
+        </tr>
+        </thead>
+        <tbody id="goon2">
+        </tbody>
+    </table>
+    <hr>
+    <h1>3군</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col" class="ssid">#</th>
+            <th scope="col" class="song">Ochame Kinou</th>
+            <th scope="col" class="song">ROCKSTAR(TAK Remix)</th>
+            <th scope="col" class="song">Yell For the Dream! Patissiere’ (Short ver)</th>
+            <th scope="col" class="song">Muyaho</th>
+            <th scope="col" class="song">Ferocious Battlefield</th>
+            <th scope="col" class="song">In to the Night (ENG VER)</th>
+        </tr>
+        </thead>
+        <tbody id="goon3">
+        </tbody>
+    </table>
+    <hr>
+</div>
 </body>
 </html>
