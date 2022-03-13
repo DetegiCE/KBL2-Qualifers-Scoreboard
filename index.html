@@ -26,12 +26,13 @@
                         data.player.forEach(function(elem) {
                             $('#goon1').append(`<tr>
                                 <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
-                                <td>${elem['1f85c']}</td>
-                                <td>${elem['1cf6f']}</td>
-                                <td>${elem['228a0']}</td>
-                                <td>${elem['1f0de']}</td>
-                                <td>${elem['1be93']}</td>
-                                <td>${elem['2215c']}</td>
+                                <td>${elem['1f85c'].toFixed(3)}</td>
+                                <td>${elem['1cf6f'].toFixed(3)}</td>
+                                <td>${elem['228a0'].toFixed(3)}</td>
+                                <td>${elem['1f0de'].toFixed(3)}</td>
+                                <td>${elem['1be93'].toFixed(3)}</td>
+                                <td>${elem['2215c'].toFixed(3)}</td>
+                                <td>${(elem['1f85c']+elem['1cf6f']+elem['228a0']+elem['1f0de']+elem['1be93']+elem['2215c']).toFixed(3)}</td>
                                 </tr>`);
                         });
                     },
@@ -46,12 +47,13 @@
                         data.player.forEach(function(elem) {
                             $('#goon2').append(`<tr>
                                 <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
-                                <td>${elem['1a994']}</td>
-                                <td>${elem['1efae']}</td>
-                                <td>${elem['13de6']}</td>
-                                <td>${elem['d46b']}</td>
-                                <td>${elem['d485']}</td>
-                                <td>${elem['197d4']}</td>
+                                <td>${elem['1a994'].toFixed(3)}</td>
+                                <td>${elem['1efae'].toFixed(3)}</td>
+                                <td>${elem['13de6'].toFixed(3)}</td>
+                                <td>${elem['d46b'].toFixed(3)}</td>
+                                <td>${elem['d485'].toFixed(3)}</td>
+                                <td>${elem['197d4'].toFixed(3)}</td>
+                                <td>${(elem['1a994']+elem['1efae']+elem['13de6']+elem['d46b']+elem['d485']+elem['197d4']).toFixed(3)}</td>
                                 </tr>`);
                         });
                     },
@@ -66,12 +68,13 @@
                         data.player.forEach(function(elem) {
                             $('#goon3').append(`<tr>
                                 <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
-                                <td>${elem['21c49']}</td>
-                                <td>${elem['1bbb6']}</td>
-                                <td>${elem['22471']}</td>
-                                <td>${elem['1506e']}</td>
-                                <td>${elem['d2d2']}</td>
-                                <td>${elem['21fae']}</td>
+                                <td>${elem['21c49'].toFixed(3)}</td>
+                                <td>${elem['1bbb6'].toFixed(3)}</td>
+                                <td>${elem['22471'].toFixed(3)}</td>
+                                <td>${elem['1506e'].toFixed(3)}</td>
+                                <td>${elem['d2d2'].toFixed(3)}</td>
+                                <td>${elem['21fae'].toFixed(3)}</td>
+                                <td>${(elem['21c49']+elem['1bbb6']+elem['22471']+elem['1506e']+elem['d2d2']+elem['21fae']).toFixed(3)}</td>
                                 </tr>`);
                         });
                     },
@@ -87,10 +90,13 @@
             padding: 5px;
         }
         .ssid {
-            width: 10%;
+            width: 11%;
         }
         .song {
-            width: 15%;
+            width: 13%;
+        }
+        .sum {
+            width: 11%;
         }
     </style>
 </head>
@@ -107,6 +113,7 @@
             <th scope="col" class="song">Climax (Kobaryo’s FTN-Remix)	</th>
             <th scope="col" class="song">Faithful dog “Hachi”</th>
             <th scope="col" class="song">Date 2 (From “Your Name”)</th>
+            <th scope="col" class="sum">합계</th>
         </tr>
         </thead>
         <tbody id="goon1">
@@ -124,6 +131,7 @@
             <th scope="col" class="song">Maze No.9</th>
             <th scope="col" class="song">Chocolate Missile</th>
             <th scope="col" class="song">Wocky - VS. Kapi Mod OST</th>
+            <th scope="col" class="sum">합계</th>
         </tr>
         </thead>
         <tbody id="goon2">
@@ -141,6 +149,7 @@
             <th scope="col" class="song">Muyaho</th>
             <th scope="col" class="song">Ferocious Battlefield</th>
             <th scope="col" class="song">In to the Night (ENG VER)</th>
+            <th scope="col" class="sum">합계</th>
         </tr>
         </thead>
         <tbody id="goon3">
