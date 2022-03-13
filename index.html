@@ -14,19 +14,25 @@
             $.getJSON(url, function(data) {
                 tag_name = data[0].tag_name;
                 var baseurl = 'https://github.com/DetegiCE/KBL2-Qualifers-Scoreboard/releases/download/'
-                var score1 = baseurl + tag_name + '/scores1.json?callback=?';
-                var score2 = baseurl + tag_name + '/scores2.json?callback=?';
-                var score3 = baseurl + tag_name + '/scores3.json?callback=?';
-                $.getJSON(score1, function(data) {
-                    console.log(data);
-                })
-                $.getJSON(score2, function(data) {
-                    console.log(data);
-                })
-                $.getJSON(score3, function(data) {
-                    console.log(data);
-                })
-            })
+                var score1 = baseurl + tag_name + '/scores1.json';
+                var score2 = baseurl + tag_name + '/scores2.json';
+                var score3 = baseurl + tag_name + '/scores3.json';
+                $.ajax({
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    responseType: 'application/json',
+                    url: score1,
+                    headers: {
+                        'Access-Control-Allow-Credentials' : true,
+                        'Access-Control-Allow-Origin':'*',
+                        'Access-Control-Allow-Methods':'GET',
+                        'Access-Control-Allow-Headers':'application/json',
+                    },
+                    success: function(data) {
+                        console.log(data);
+                    }
+                });
+            });
         }
     </script>
 </head>
