@@ -13,21 +13,13 @@
             var url = 'https://api.github.com/repos/DetegiCE/KBL2-Qualifers-Scoreboard/releases';
             $.getJSON(url, function(data) {
                 tag_name = data[0].tag_name;
-                var baseurl = 'https://cors-anywhere.herokuapp.com/https://github.com/DetegiCE/KBL2-Qualifers-Scoreboard/releases/download/'
+                var baseurl = 'https://github.com/DetegiCE/KBL2-Qualifers-Scoreboard/releases/download/'
                 var score1 = baseurl + tag_name + '/scores1.json';
                 var score2 = baseurl + tag_name + '/scores2.json';
                 var score3 = baseurl + tag_name + '/scores3.json';
                 $.ajax({
-                    dataType: 'json',
-                    crossDomain: true,
+                    dataType: 'jsonp',
                     url: score1,
-                    type: 'GET',
-                    headers: {
-                        'Access-Control-Allow-Credentials' : true,
-                        'Access-Control-Allow-Origin':'*',
-                        'Access-Control-Allow-Methods':'GET',
-                        'Access-Control-Allow-Headers':'application/json',
-                    },
                     success: function(data) {
                         console.log(data);
                     },
