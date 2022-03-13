@@ -18,10 +18,10 @@
                 var score2 = baseurl + tag_name + '/scores2.json';
                 var score3 = baseurl + tag_name + '/scores3.json';
                 $.ajax({
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    responseType: 'application/json',
+                    dataType: 'jsonp',
+                    crossDomain: true,
                     url: score1,
+                    type: 'GET',
                     headers: {
                         'Access-Control-Allow-Credentials' : true,
                         'Access-Control-Allow-Origin':'*',
