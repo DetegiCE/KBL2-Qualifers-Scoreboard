@@ -1,0 +1,33 @@
+name: Generate Scoreboard
+on:
+  schedule:
+  - cron: '0 */2 * * *'
+  workflow_dispatch:
+    branches: [ main ]
+jobs:
+  build:
+    name: Build Scoreboard
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Run Python
+      run: |
+        mkdir file
+        python main.py
+    - name: Release
+      run: |
+        set -x
+        cd file
+        zip -r scores_all.zip ./*.json
+        assets=()
+        for asset in ./*.json; do
+          assets+=("-a" "$asset")
+        done
+        assets+=("-a" "scores_all.zip")
+        tag_name=`date '+%Y%m%d%H%M'`
+        hub release create "${assets[@]}" -m "Latest" "$tag_name"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
