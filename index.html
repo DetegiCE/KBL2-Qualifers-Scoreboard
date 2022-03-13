@@ -24,7 +24,7 @@
                     success: function(data) {
                         console.log(data);
                         data.player.forEach(function(elem) {
-                            $('#goon1').innerHTML += `<tr>
+                            $('#goon1').append(`<tr>
                                 <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
                                 <td>${elem['1f85c']}</td>
                                 <td>${elem['1cf6f']}</td>
@@ -32,7 +32,7 @@
                                 <td>${elem['1f0de']}</td>
                                 <td>${elem['1be93']}</td>
                                 <td>${elem['2215c']}</td>
-                                </tr>`;
+                                </tr>`);
                         });
                     },
                     error: function(data) {
@@ -44,7 +44,7 @@
                     url: score2,
                     success: function(data) {
                         data.player.forEach(function(elem) {
-                            $('#goon2').innerHTML += `<tr>
+                            $('#goon2').append(`<tr>
                                 <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
                                 <td>${elem['1a994']}</td>
                                 <td>${elem['1efae']}</td>
@@ -52,7 +52,7 @@
                                 <td>${elem['d46b']}</td>
                                 <td>${elem['d485']}</td>
                                 <td>${elem['197d4']}</td>
-                                </tr>`;
+                                </tr>`);
                         });
                     },
                     error: function(data) {
@@ -64,7 +64,7 @@
                     url: score3,
                     success: function(data) {
                         data.player.forEach(function(elem) {
-                            $('#goon3').innerHTML += `<tr>
+                            $('#goon3').append(`<tr>
                                 <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
                                 <td>${elem['21c49']}</td>
                                 <td>${elem['1bbb6']}</td>
@@ -72,7 +72,7 @@
                                 <td>${elem['1506e']}</td>
                                 <td>${elem['d2d2']}</td>
                                 <td>${elem['21fae']}</td>
-                                </tr>`;
+                                </tr>`);
                         });
                     },
                     error: function(data) {
