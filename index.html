@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>예선 점수표</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
     <script>
         var tag_name = '';
-        window.onload = function() {
+        $(document).ready(function() {
             var url = 'https://api.github.com/repos/DetegiCE/KBL2-Qualifers-Scoreboard/releases';
             $.getJSON(url, function(data) {
                 tag_name = data[0].tag_name;
@@ -21,6 +22,7 @@
                     dataType: 'json',
                     url: score1,
                     success: function(data) {
+                        console.log(data);
                         data.player.forEach(function(elem) {
                             $('#goon1').innerHTML += `<tr>
                                 <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
@@ -32,6 +34,9 @@
                                 <td>${elem['2215c']}</td>
                                 </tr>`;
                         });
+                    },
+                    error: function(data) {
+                        console.log(data);
                     }
                 });
                 $.ajax({
@@ -49,6 +54,9 @@
                                 <td>${elem['197d4']}</td>
                                 </tr>`;
                         });
+                    },
+                    error: function(data) {
+                        console.log(data);
                     }
                 });
                 $.ajax({
@@ -66,10 +74,13 @@
                                 <td>${elem['21fae']}</td>
                                 </tr>`;
                         });
+                    },
+                    error: function(data) {
+                        console.log(data);
                     }
                 });
             });
-        }
+        });
     </script>
     <style>
         #container {
@@ -137,5 +148,6 @@
     </table>
     <hr>
 </div>
+
 </body>
 </html>
