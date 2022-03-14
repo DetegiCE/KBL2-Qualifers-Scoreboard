@@ -18,11 +18,23 @@
                 var score1 = baseurl + tag_name + '/scores1.json';
                 var score2 = baseurl + tag_name + '/scores2.json';
                 var score3 = baseurl + tag_name + '/scores3.json';
+                var tag_date = new Date(Number(tag_name.substr(0, 4)), Number(tag_name.substr(4, 2))-1, Number(tag_name.substr(6, 2)), Number(tag_name.substr(8, 2)), Number(tag_name.substr(10, 2)), 0);
+                tag_date.setHours(tag_date.getHours() + 9);
+                console.log(tag_date);
+                console.log(tag_name);
+                console.log(tag_date.getMonth());
+                $('#recdate').append(`${tag_date.getMonth()+1}월 ${tag_date.getDate()}일 ${tag_date.getHours()}시 ${tag_date.getMinutes()}분`);
                 $.ajax({
                     dataType: 'json',
                     url: score1,
                     success: function(data) {
                         console.log(data);
+                        data.player.sort(function(a, b) {
+                           var asum = a['1f85c']+a['1cf6f']+a['228a0']+a['1f0de']+a['1be93']+a['2215c'];
+                           var bsum = b['1f85c']+b['1cf6f']+b['228a0']+b['1f0de']+b['1be93']+b['2215c'];
+                           return asum > bsum ? -1 : asum < bsum ? 1 : 0;
+                        });
+                        var count8 = 0;
                         data.player.forEach(function(elem) {
                             $('#goon1').append(`<tr>
                                 <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
@@ -34,6 +46,12 @@
                                 <td>${elem['2215c'].toFixed(3)}</td>
                                 <td>${(elem['1f85c']+elem['1cf6f']+elem['228a0']+elem['1f0de']+elem['1be93']+elem['2215c']).toFixed(3)}</td>
                                 </tr>`);
+                            count8++;
+                            if(count8 === 8) {
+                                $('#goon1').append(`<tr>
+                                <th scope="row" colspan="8" style="text-align: center; background: linear-gradient(to right, #ffffff, #cc0000, #ffffff); color: white">본선 진출 컷</th>
+                                </tr>`)
+                            }
                         });
                     },
                     error: function(data) {
@@ -44,6 +62,12 @@
                     dataType: 'json',
                     url: score2,
                     success: function(data) {
+                        data.player.sort(function(a, b) {
+                            var asum = a['1a994']+a['1efae']+a['13de6']+a['d46b']+a['d485']+a['197d4'];
+                            var bsum = b['1a994']+b['1efae']+b['13de6']+b['d46b']+b['d485']+b['197d4'];
+                            return asum > bsum ? -1 : asum < bsum ? 1 : 0;
+                        });
+                        var count8 = 0;
                         data.player.forEach(function(elem) {
                             $('#goon2').append(`<tr>
                                 <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
@@ -55,6 +79,12 @@
                                 <td>${elem['197d4'].toFixed(3)}</td>
                                 <td>${(elem['1a994']+elem['1efae']+elem['13de6']+elem['d46b']+elem['d485']+elem['197d4']).toFixed(3)}</td>
                                 </tr>`);
+                            count8++;
+                            if(count8 === 8) {
+                                $('#goon2').append(`<tr>
+                                <th scope="row" colspan="8" style="text-align: center; background: linear-gradient(to right, #ffffff, #cc0000, #ffffff); color: white">본선 진출 컷</th>
+                                </tr>`)
+                            }
                         });
                     },
                     error: function(data) {
@@ -65,6 +95,12 @@
                     dataType: 'json',
                     url: score3,
                     success: function(data) {
+                        data.player.sort(function(a, b) {
+                            var asum = a['21c49']+a['1bbb6']+a['22471']+a['1506e']+a['d2d2']+a['21fae'];
+                            var bsum = b['21c49']+b['1bbb6']+b['22471']+b['1506e']+b['d2d2']+b['21fae'];
+                            return asum > bsum ? -1 : asum < bsum ? 1 : 0;
+                        });
+                        var count8 = 0;
                         data.player.forEach(function(elem) {
                             $('#goon3').append(`<tr>
                                 <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
@@ -76,6 +112,12 @@
                                 <td>${elem['21fae'].toFixed(3)}</td>
                                 <td>${(elem['21c49']+elem['1bbb6']+elem['22471']+elem['1506e']+elem['d2d2']+elem['21fae']).toFixed(3)}</td>
                                 </tr>`);
+                            count8++;
+                            if(count8 === 8) {
+                                $('#goon3').append(`<tr>
+                                <th scope="row" colspan="8" style="text-align: center; background: linear-gradient(to right, #ffffff, #cc0000, #ffffff); color: white">본선 진출 컷</th>
+                                </tr>`)
+                            }
                         });
                     },
                     error: function(data) {
@@ -102,7 +144,10 @@
 </head>
 <body>
 <div id="container">
-    <h1>1군</h1>
+    <h1>제2회 전자칼잽이 대회 예선 점수판</h1>
+    <p>최근 갱신 일시: <span id="recdate"></span></p>
+    <hr>
+    <h2>1군</h2>
     <table class="table">
         <thead>
         <tr>
@@ -120,7 +165,7 @@
         </tbody>
     </table>
     <hr>
-    <h1>2군</h1>
+    <h2>2군</h2>
     <table class="table">
         <thead>
         <tr>
@@ -138,7 +183,7 @@
         </tbody>
     </table>
     <hr>
-    <h1>3군</h1>
+    <h2>3군</h2>
     <table class="table">
         <thead>
         <tr>
