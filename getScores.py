@@ -24,10 +24,10 @@ def getScoresBySong(hash: str, diff: str, grade: int) -> dict:
     scores = dict()
     for p in player['player']:
         ssidList.append(p['ssid'])
-    r = requests.get(f'https://scoresaber.com/api/leaderboard/by-hash/{hash}/scores?difficulty={getDiff(diff)}&countries=KR')
+    r = requests.get(f'https://scoresaber.com/api/leaderboard/by-hash/{hash}/scores?difficulty={getDiff(diff)}&countries=KR,JP')
     totalPages = ((r.json()['metadata']['total']-1) // r.json()['metadata']['itemsPerPage'])+1
     for page in range(1, totalPages+1):
-        r = requests.get(f'https://scoresaber.com/api/leaderboard/by-hash/{hash}/scores?difficulty={getDiff(diff)}&countries=KR&page={page}')
+        r = requests.get(f'https://scoresaber.com/api/leaderboard/by-hash/{hash}/scores?difficulty={getDiff(diff)}&countries=KR,JP&page={page}')
         rjson = r.json()
         for s in rjson['scores']:
             if s['leaderboardPlayerInfo']['id'] in ssidList:
