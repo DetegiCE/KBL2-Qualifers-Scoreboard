@@ -37,6 +37,12 @@ def getScoresBySong(hash: str, diff: str, grade: int) -> dict:
             break
     return scores
 
+def calcRank(myAcc: float, totalAccs: dict) -> int:
+    for i in range(0, len(list(totalAccs.values()))):
+        if myAcc == totalAccs[i]:
+            return i + 1
+    return len(list(totalAccs.values()))
+
 def getAcc(totalNotes: int, getScore: int) -> float:
     maxScore = (totalNotes - 13) * 115 * 8 + 115 + (115 * 8) + (115 * 32)
     return getScore / maxScore * 100.0
@@ -49,8 +55,10 @@ def getScores(grade: int):
         for p in player['player']:
             if p['ssid'] in sdict:
                 p[s['code']] = getAcc(s['note'], sdict[p['ssid']])
+                p[s['code']+'R'] = calcRank(sdict[p['ssid']], sdict)
             else:
                 p[s['code']] = 0
+                p[s['code']+'R'] = calcRank(0, sdict)
     return player
 
 
