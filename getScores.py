@@ -43,7 +43,7 @@ def calcRank(myAcc: float, totalAccs: dict) -> int:
     for i in range(0, len(vlist)):
         if myAcc == vlist[i]:
             return i + 1
-    return len(vlist)
+    return len(vlist) + 1
 
 def getAcc(totalNotes: int, getScore: int) -> float:
     maxScore = (totalNotes - 13) * 115 * 8 + 115 + (115 * 8) + (115 * 32)
