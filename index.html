@@ -24,6 +24,14 @@
                 console.log(tag_name);
                 console.log(tag_date.getMonth());
                 $('#recdate').append(`${tag_date.getMonth()+1}월 ${tag_date.getDate()}일 ${tag_date.getHours()}시 ${tag_date.getMinutes()}분`);
+
+                const rBadge = function(rank) {
+                    if(rank === 1) return '<span class="badge text-light" style="background-color:#D5A11E">1</span>';
+                    else if(rank === 2) return '<span class="badge text-light" style="background-color:#A3A3A3">2</span>';
+                    else if(rank === 3) return '<span class="badge text-light" style="background-color:#CD7F32">3</span>';
+                    else return `<span class="badge bg-secondary text-light">${rank}</span>`;
+                }
+
                 $.ajax({
                     dataType: 'json',
                     url: score1,
@@ -38,12 +46,12 @@
                         data.player.forEach(function(elem) {
                             $('#goon1').append(`<tr>
                                 <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
-                                <td>${elem['1f85c'].toFixed(3)}</td>
-                                <td>${elem['1cf6f'].toFixed(3)}</td>
-                                <td>${elem['228a0'].toFixed(3)}</td>
-                                <td>${elem['1f0de'].toFixed(3)}</td>
-                                <td>${elem['1be93'].toFixed(3)}</td>
-                                <td>${elem['2215c'].toFixed(3)}</td>
+                                <td>${elem['1f85c'].toFixed(3)} ${rBadge(elem['1f85cR'])}</td>
+                                <td>${elem['1cf6f'].toFixed(3)} ${rBadge(elem['1cf6fR'])}</td>
+                                <td>${elem['228a0'].toFixed(3)} ${rBadge(elem['228a0R'])}</td>
+                                <td>${elem['1f0de'].toFixed(3)} ${rBadge(elem['1f0deR'])}</td>
+                                <td>${elem['1be93'].toFixed(3)} ${rBadge(elem['1be93R'])}</td>
+                                <td>${elem['2215c'].toFixed(3)} ${rBadge(elem['2215cR'])}</td>
                                 <td>${(elem['1f85c']+elem['1cf6f']+elem['228a0']+elem['1f0de']+elem['1be93']+elem['2215c']).toFixed(3)}<br>(Avg. ${((elem['1f85c']+elem['1cf6f']+elem['228a0']+elem['1f0de']+elem['1be93']+elem['2215c'])/6).toFixed(3)})</td>
                                 </tr>`);
                             count8++;
@@ -71,12 +79,12 @@
                         data.player.forEach(function(elem) {
                             $('#goon2').append(`<tr>
                                 <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
-                                <td>${elem['1a994'].toFixed(3)}</td>
-                                <td>${elem['1efae'].toFixed(3)}</td>
-                                <td>${elem['13de6'].toFixed(3)}</td>
-                                <td>${elem['d46b'].toFixed(3)}</td>
-                                <td>${elem['d485'].toFixed(3)}</td>
-                                <td>${elem['197d4'].toFixed(3)}</td>
+                                <td>${elem['1a994'].toFixed(3)} ${rBadge(elem['1a994R'])}</td>
+                                <td>${elem['1efae'].toFixed(3)} ${rBadge(elem['1efaeR'])}</td>
+                                <td>${elem['13de6'].toFixed(3)} ${rBadge(elem['13de6R'])}</td>
+                                <td>${elem['d46b'].toFixed(3)} ${rBadge(elem['d46bR'])}</td>
+                                <td>${elem['d485'].toFixed(3)} ${rBadge(elem['d485R'])}</td>
+                                <td>${elem['197d4'].toFixed(3)} ${rBadge(elem['197d4R'])}</td>
                                 <td>${(elem['1a994']+elem['1efae']+elem['13de6']+elem['d46b']+elem['d485']+elem['197d4']).toFixed(3)}<br>(Avg. ${((elem['1a994']+elem['1efae']+elem['13de6']+elem['d46b']+elem['d485']+elem['197d4'])/6).toFixed(3)})</td>
                                 </tr>`);
                             count8++;
@@ -104,12 +112,12 @@
                         data.player.forEach(function(elem) {
                             $('#goon3').append(`<tr>
                                 <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
-                                <td>${elem['21c49'].toFixed(3)}</td>
-                                <td>${elem['1bbb6'].toFixed(3)}</td>
-                                <td>${elem['22471'].toFixed(3)}</td>
-                                <td>${elem['1506e'].toFixed(3)}</td>
-                                <td>${elem['d2d2'].toFixed(3)}</td>
-                                <td>${elem['21fae'].toFixed(3)}</td>
+                                <td>${elem['21c49'].toFixed(3)} ${rBadge(elem['21c49R'])}</td>
+                                <td>${elem['1bbb6'].toFixed(3)} ${rBadge(elem['1bbb6R'])}</td>
+                                <td>${elem['22471'].toFixed(3)} ${rBadge(elem['22471R'])}</td>
+                                <td>${elem['1506e'].toFixed(3)} ${rBadge(elem['1506eR'])}</td>
+                                <td>${elem['d2d2'].toFixed(3)} ${rBadge(elem['d2d2R'])}</td>
+                                <td>${elem['21fae'].toFixed(3)} ${rBadge(elem['21faeR'])}</td>
                                 <td>${(elem['21c49']+elem['1bbb6']+elem['22471']+elem['1506e']+elem['d2d2']+elem['21fae']).toFixed(3)}<br>(Avg. ${((elem['21c49']+elem['1bbb6']+elem['22471']+elem['1506e']+elem['d2d2']+elem['21fae'])/6).toFixed(3)})</td>
                                 </tr>`);
                             count8++;
