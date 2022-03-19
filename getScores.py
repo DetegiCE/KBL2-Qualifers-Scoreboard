@@ -38,10 +38,12 @@ def getScoresBySong(hash: str, diff: str, grade: int) -> dict:
     return scores
 
 def calcRank(myAcc: float, totalAccs: dict) -> int:
-    for i in range(0, len(list(totalAccs.values()))):
-        if myAcc == totalAccs[i]:
+    vlist = list(totalAccs.values())
+    vlist.sort(reverse=True)
+    for i in range(0, len(vlist)):
+        if myAcc == vlist[i]:
             return i + 1
-    return len(list(totalAccs.values()))
+    return len(vlist)
 
 def getAcc(totalNotes: int, getScore: int) -> float:
     maxScore = (totalNotes - 13) * 115 * 8 + 115 + (115 * 8) + (115 * 32)
