@@ -18,6 +18,9 @@
                 var score1 = baseurl + tag_name + '/scores1.json';
                 var score2 = baseurl + tag_name + '/scores2.json';
                 var score3 = baseurl + tag_name + '/scores3.json';
+                var head1 = 0;
+                var head2 = 0;
+                var head3 = 0;
                 var tag_date = new Date(Number(tag_name.substr(0, 4)), Number(tag_name.substr(4, 2))-1, Number(tag_name.substr(6, 2)), Number(tag_name.substr(8, 2)), Number(tag_name.substr(10, 2)), 0);
                 tag_date.setHours(tag_date.getHours() + 9);
                 console.log(tag_date);
@@ -44,15 +47,15 @@
                         });
                         var count8 = 0;
                         data.player.forEach(function(elem) {
-                            $('#goon1').append(`<tr>
-                                <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
-                                <td>${elem['1f85c'].toFixed(3)} ${rBadge(elem['1f85cR'])}</td>
-                                <td>${elem['1cf6f'].toFixed(3)} ${rBadge(elem['1cf6fR'])}</td>
-                                <td>${elem['228a0'].toFixed(3)} ${rBadge(elem['228a0R'])}</td>
-                                <td>${elem['1f0de'].toFixed(3)} ${rBadge(elem['1f0deR'])}</td>
-                                <td>${elem['1be93'].toFixed(3)} ${rBadge(elem['1be93R'])}</td>
-                                <td>${elem['2215c'].toFixed(3)} ${rBadge(elem['2215cR'])}</td>
-                                <td>${(elem['1f85c']+elem['1cf6f']+elem['228a0']+elem['1f0de']+elem['1be93']+elem['2215c']).toFixed(3)}<br>(Avg. ${((elem['1f85c']+elem['1cf6f']+elem['228a0']+elem['1f0de']+elem['1be93']+elem['2215c'])/6).toFixed(3)})</td>
+                            $('#goon1').append(`<tr style="width: inherit">
+                                <th scope="row" class="ssid"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
+                                <td class="song">${elem['1f85c'].toFixed(3)} ${rBadge(elem['1f85cR'])}</td>
+                                <td class="song">${elem['1cf6f'].toFixed(3)} ${rBadge(elem['1cf6fR'])}</td>
+                                <td class="song">${elem['228a0'].toFixed(3)} ${rBadge(elem['228a0R'])}</td>
+                                <td class="song">${elem['1f0de'].toFixed(3)} ${rBadge(elem['1f0deR'])}</td>
+                                <td class="song">${elem['1be93'].toFixed(3)} ${rBadge(elem['1be93R'])}</td>
+                                <td class="song">${elem['2215c'].toFixed(3)} ${rBadge(elem['2215cR'])}</td>
+                                <td class="sum">${(elem['1f85c']+elem['1cf6f']+elem['228a0']+elem['1f0de']+elem['1be93']+elem['2215c']).toFixed(3)}<br>(Avg. ${((elem['1f85c']+elem['1cf6f']+elem['228a0']+elem['1f0de']+elem['1be93']+elem['2215c'])/6).toFixed(3)})</td>
                                 </tr>`);
                             count8++;
                             if(count8 === 8) {
@@ -61,6 +64,9 @@
                                 </tr>`)
                             }
                         });
+                        head1 = Math.max($("#head1").offset().top, head1);
+                        head2 = Math.max($("#head2").offset().top, head2);
+                        head3 = Math.max($("#head3").offset().top, head3);
                     },
                     error: function(data) {
                         console.log(data);
@@ -77,15 +83,15 @@
                         });
                         var count8 = 0;
                         data.player.forEach(function(elem) {
-                            $('#goon2').append(`<tr>
-                                <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
-                                <td>${elem['1a994'].toFixed(3)} ${rBadge(elem['1a994R'])}</td>
-                                <td>${elem['1efae'].toFixed(3)} ${rBadge(elem['1efaeR'])}</td>
-                                <td>${elem['13de6'].toFixed(3)} ${rBadge(elem['13de6R'])}</td>
-                                <td>${elem['d46b'].toFixed(3)} ${rBadge(elem['d46bR'])}</td>
-                                <td>${elem['d485'].toFixed(3)} ${rBadge(elem['d485R'])}</td>
-                                <td>${elem['197d4'].toFixed(3)} ${rBadge(elem['197d4R'])}</td>
-                                <td>${(elem['1a994']+elem['1efae']+elem['13de6']+elem['d46b']+elem['d485']+elem['197d4']).toFixed(3)}<br>(Avg. ${((elem['1a994']+elem['1efae']+elem['13de6']+elem['d46b']+elem['d485']+elem['197d4'])/6).toFixed(3)})</td>
+                            $('#goon2').append(`<tr style="width: inherit">
+                                <th scope="row" class="ssid" ><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
+                                <td class="song">${elem['1a994'].toFixed(3)} ${rBadge(elem['1a994R'])}</td>
+                                <td class="song">${elem['1efae'].toFixed(3)} ${rBadge(elem['1efaeR'])}</td>
+                                <td class="song">${elem['13de6'].toFixed(3)} ${rBadge(elem['13de6R'])}</td>
+                                <td class="song">${elem['d46b'].toFixed(3)} ${rBadge(elem['d46bR'])}</td>
+                                <td class="song">${elem['d485'].toFixed(3)} ${rBadge(elem['d485R'])}</td>
+                                <td class="song">${elem['197d4'].toFixed(3)} ${rBadge(elem['197d4R'])}</td>
+                                <td class="sum">${(elem['1a994']+elem['1efae']+elem['13de6']+elem['d46b']+elem['d485']+elem['197d4']).toFixed(3)}<br>(Avg. ${((elem['1a994']+elem['1efae']+elem['13de6']+elem['d46b']+elem['d485']+elem['197d4'])/6).toFixed(3)})</td>
                                 </tr>`);
                             count8++;
                             if(count8 === 8) {
@@ -94,6 +100,9 @@
                                 </tr>`)
                             }
                         });
+                        head1 = Math.max($("#head1").offset().top, head1);
+                        head2 = Math.max($("#head2").offset().top, head2);
+                        head3 = Math.max($("#head3").offset().top, head3);
                     },
                     error: function(data) {
                         console.log(data);
@@ -110,15 +119,15 @@
                         });
                         var count8 = 0;
                         data.player.forEach(function(elem) {
-                            $('#goon3').append(`<tr>
-                                <th scope="row"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
-                                <td>${elem['21c49'].toFixed(3)} ${rBadge(elem['21c49R'])}</td>
-                                <td>${elem['1bbb6'].toFixed(3)} ${rBadge(elem['1bbb6R'])}</td>
-                                <td>${elem['22471'].toFixed(3)} ${rBadge(elem['22471R'])}</td>
-                                <td>${elem['1506e'].toFixed(3)} ${rBadge(elem['1506eR'])}</td>
-                                <td>${elem['d2d2'].toFixed(3)} ${rBadge(elem['d2d2R'])}</td>
-                                <td>${elem['21fae'].toFixed(3)} ${rBadge(elem['21faeR'])}</td>
-                                <td>${(elem['21c49']+elem['1bbb6']+elem['22471']+elem['1506e']+elem['d2d2']+elem['21fae']).toFixed(3)}<br>(Avg. ${((elem['21c49']+elem['1bbb6']+elem['22471']+elem['1506e']+elem['d2d2']+elem['21fae'])/6).toFixed(3)})</td>
+                            $('#goon3').append(`<tr style="width: inherit">
+                                <th scope="row" class="ssid"><a href="https://scoresaber.com/u/${elem['ssid']}">${elem['name']}</a></th>
+                                <td class="song">${elem['21c49'].toFixed(3)} ${rBadge(elem['21c49R'])}</td>
+                                <td class="song">${elem['1bbb6'].toFixed(3)} ${rBadge(elem['1bbb6R'])}</td>
+                                <td class="song">${elem['22471'].toFixed(3)} ${rBadge(elem['22471R'])}</td>
+                                <td class="song">${elem['1506e'].toFixed(3)} ${rBadge(elem['1506eR'])}</td>
+                                <td class="song">${elem['d2d2'].toFixed(3)} ${rBadge(elem['d2d2R'])}</td>
+                                <td class="song">${elem['21fae'].toFixed(3)} ${rBadge(elem['21faeR'])}</td>
+                                <td class="sum">${(elem['21c49']+elem['1bbb6']+elem['22471']+elem['1506e']+elem['d2d2']+elem['21fae']).toFixed(3)}<br>(Avg. ${((elem['21c49']+elem['1bbb6']+elem['22471']+elem['1506e']+elem['d2d2']+elem['21fae'])/6).toFixed(3)})</td>
                                 </tr>`);
                             count8++;
                             if(count8 === 8) {
@@ -127,9 +136,40 @@
                                 </tr>`)
                             }
                         });
+                        head1 = Math.max($("#head1").offset().top, head1);
+                        head2 = Math.max($("#head2").offset().top, head2);
+                        head3 = Math.max($("#head3").offset().top, head3);
                     },
                     error: function(data) {
                         console.log(data);
+                    }
+                });
+
+                var h1 = $("#head1").height();
+                var h2 = $("#head2").height();
+                var h3 = $("#head3").height();
+                $(window).scroll(function() {
+                    var window = $(this).scrollTop();
+                    if(head1-h1 <= window && window <= head2-h2) {
+                        $("#head1").addClass("fixed");
+                        $("#head2").removeClass("fixed");
+                        $("#head3").removeClass("fixed");
+                    }
+                    else if(head2-h2 <= window && window <= head3-h3) {
+                        $("#head2").addClass("fixed");
+                        $("#head1").removeClass("fixed");
+                        $("#head3").removeClass("fixed");
+                    }
+                    else if(head3-h3 <= window) {
+                        $("#head3").addClass("fixed");
+                        $("#head2").removeClass("fixed");
+                        $("#head1").removeClass("fixed");
+                    }
+                    else {
+                        $("#head3").removeClass("fixed");
+                        $("#head2").removeClass("fixed");
+                        $("#head1").removeClass("fixed");
+
                     }
                 });
             });
@@ -138,6 +178,7 @@
     <style>
         #container {
             padding: 5px;
+            overflow-y: auto;
         }
         .ssid {
             width: 11%;
@@ -148,6 +189,21 @@
         .sum {
             width: 11%;
         }
+        #head1.fixed {
+            position: fixed;
+            top: 0;
+        }
+        #head2.fixed {
+            position: fixed;
+            top: 0;
+        }
+        #head3.fixed {
+            position: fixed;
+            top: 0;
+        }
+        #head1, #head2, #head3 {
+            background-color: white;
+        }
     </style>
 </head>
 <body>
@@ -156,60 +212,56 @@
     <p>최근 갱신 일시: <span id="recdate"></span></p>
     <hr>
     <h2>1군</h2>
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col" class="ssid">#</th>
-            <th scope="col" class="song">Butterfly Twist</th>
-            <th scope="col" class="song">T+ VS SHARK</th>
-            <th scope="col" class="song">Brain Power</th>
-            <th scope="col" class="song">Climax (Kobaryo’s FTN-Remix)	</th>
-            <th scope="col" class="song">Faithful dog “Hachi”</th>
-            <th scope="col" class="song">Date 2 (From “Your Name”)</th>
-            <th scope="col" class="sum">합계</th>
-        </tr>
-        </thead>
-        <tbody id="goon1">
-        </tbody>
-    </table>
     <hr>
+    <table id="head1" class="theader">
+    <tr>
+        <th scope="col" class="ssid">1군</th>
+        <th scope="col" class="song">Butterfly Twist</th>
+        <th scope="col" class="song">T+ VS SHARK</th>
+        <th scope="col" class="song">Brain Power</th>
+        <th scope="col" class="song">Climax (Kobaryo’s FTN-Remix)	</th>
+        <th scope="col" class="song">Faithful dog “Hachi”</th>
+        <th scope="col" class="song">Date 2 (From “Your Name”)</th>
+        <th scope="col" class="sum">합계</th>
+    </tr>
+    </table>
+    <table id="goon1" class="tbodys" style="width: 100%">
+    </table>
     <h2>2군</h2>
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col" class="ssid">#</th>
-            <th scope="col" class="song">社会距離 (feat.可不)</th>
-            <th scope="col" class="song">phony</th>
-            <th scope="col" class="song">Ultimate Ascension</th>
-            <th scope="col" class="song">Maze No.9</th>
-            <th scope="col" class="song">Chocolate Missile</th>
-            <th scope="col" class="song">Wocky - VS. Kapi Mod OST</th>
-            <th scope="col" class="sum">합계</th>
-        </tr>
-        </thead>
-        <tbody id="goon2">
-        </tbody>
-    </table>
     <hr>
+    <table id="head2" class="theader">
+    <tr>
+        <th scope="col" class="ssid">2군</th>
+        <th scope="col" class="song">社会距離 (feat.可不)</th>
+        <th scope="col" class="song">phony</th>
+        <th scope="col" class="song">Ultimate Ascension</th>
+        <th scope="col" class="song">Maze No.9</th>
+        <th scope="col" class="song">Chocolate Missile</th>
+        <th scope="col" class="song">Wocky - VS. Kapi Mod OST</th>
+        <th scope="col" class="sum">합계</th>
+    </tr>
+    </table>
+    <table id="goon2" class="tbodys" style="width: 100%">
+    </table>
     <h2>3군</h2>
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col" class="ssid">#</th>
-            <th scope="col" class="song">Ochame Kinou</th>
-            <th scope="col" class="song">ROCKSTAR(TAK Remix)</th>
-            <th scope="col" class="song">Yell For the Dream! Patissiere’ (Short ver)</th>
-            <th scope="col" class="song">Muyaho</th>
-            <th scope="col" class="song">Ferocious Battlefield</th>
-            <th scope="col" class="song">In to the Night (ENG VER)</th>
-            <th scope="col" class="sum">합계</th>
-        </tr>
-        </thead>
-        <tbody id="goon3">
-        </tbody>
-    </table>
     <hr>
+    <table id="head3" class="theader">
+    <tr>
+        <th scope="col" class="ssid">3군</th>
+        <th scope="col" class="song">Ochame Kinou</th>
+        <th scope="col" class="song">ROCKSTAR(TAK Remix)</th>
+        <th scope="col" class="song">Yell For the Dream! Patissiere’ (Short ver)</th>
+        <th scope="col" class="song">Muyaho</th>
+        <th scope="col" class="song">Ferocious Battlefield</th>
+        <th scope="col" class="song">In to the Night (ENG VER)</th>
+        <th scope="col" class="sum">합계</th>
+    </tr>
+    </table>
+    <table id="goon3" class="tbodys" style="width: 100%">
+    </table>
 </div>
 
+<script>
+</script>
 </body>
 </html>
