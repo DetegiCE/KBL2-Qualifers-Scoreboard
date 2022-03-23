@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+    <script src="/js/html2canvas.js"></script>
     <script>
         var tag_name = '';
         $(document).ready(function() {
@@ -29,10 +29,10 @@
                 $('#recdate').append(`${tag_date.getMonth()+1}월 ${tag_date.getDate()}일 ${tag_date.getHours()}시 ${tag_date.getMinutes()}분`);
 
                 const rBadge = function(rank) {
-                    if(rank === 1) return '<span class="badge text-light" style="background-color:#D5A11E">1</span>';
-                    else if(rank === 2) return '<span class="badge text-light" style="background-color:#A3A3A3">2</span>';
-                    else if(rank === 3) return '<span class="badge text-light" style="background-color:#CD7F32">3</span>';
-                    else return `<span class="badge bg-secondary text-light">${rank}</span>`;
+                    if(rank === 1) return '<span class="badge" style="background-color:#D5A11E; color:white">1</span>';
+                    else if(rank === 2) return '<span class="badge" style="background-color:#A3A3A3; color:white">2</span>';
+                    else if(rank === 3) return '<span class="badge" style="background-color:#CD7F32; color:white">3</span>';
+                    else return `<span class="badge bg-secondary" style="color:white">${rank}</span>`;
                 }
 
                 $.ajax({
@@ -172,8 +172,28 @@
 
                     }
                 });
+
+
             });
         });
+
+        function PrintDiv(div) {
+            div = div[0];
+            var recp = document.getElementById('recentupdate').innerText;
+            div.append(`${recp}`);
+            html2canvas(div).then(function(canvas) {
+                var myImg = canvas.toDataURL();
+                downloadURI(myImg, "rank.png");
+            }).then(div.removeChild(div.lastChild));
+        }
+
+        function downloadURI(uri, name) {
+            var link = document.createElement('a');
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+        }
     </script>
     <style>
         #container {
@@ -207,58 +227,70 @@
     </style>
 </head>
 <body>
+<div class="save_btn">
+    <button type="button" class="btn btn-primary" onclick="PrintDiv($('#container'));">전체 저장</button>
+    <button type="button" class="btn btn-danger" onclick="PrintDiv($('#goon1div'));">1군 저장</button>
+    <button type="button" class="btn btn-success" onclick="PrintDiv($('#goon2div'));">2군 저장</button>
+    <button type="button" class="btn btn-secondary" onclick="PrintDiv($('#goon3div'));">3군 저장</button>
+</div>
 <div id="container">
     <h1>제2회 전자칼잽이 대회 예선 점수판</h1>
-    <p>최근 갱신 일시: <span id="recdate"></span></p>
+    <p id="recentupdate">최근 갱신 일시: <span id="recdate"></span></p>
     <hr>
-    <h2>1군</h2>
-    <hr>
-    <table id="head1" class="theader" style="width: 100%">
-    <tr>
-        <th scope="col" class="ssid">1군</th>
-        <th scope="col" class="song">Butterfly Twist</th>
-        <th scope="col" class="song">T+ VS SHARK</th>
-        <th scope="col" class="song">Brain Power</th>
-        <th scope="col" class="song">Climax (Kobaryo’s FTN-Remix)	</th>
-        <th scope="col" class="song">Faithful dog “Hachi”</th>
-        <th scope="col" class="song">Date 2 (From “Your Name”)</th>
-        <th scope="col" class="sum">합계</th>
-    </tr>
-    </table>
-    <table id="goon1" class="tbodys" style="width: 100%">
-    </table>
-    <h2>2군</h2>
-    <hr>
-    <table id="head2" class="theader" style="width: 100%">
-    <tr>
-        <th scope="col" class="ssid">2군</th>
-        <th scope="col" class="song">社会距離 (feat.可不)</th>
-        <th scope="col" class="song">phony</th>
-        <th scope="col" class="song">Ultimate Ascension</th>
-        <th scope="col" class="song">Maze No.9</th>
-        <th scope="col" class="song">Chocolate Missile</th>
-        <th scope="col" class="song">Wocky - VS. Kapi Mod OST</th>
-        <th scope="col" class="sum">합계</th>
-    </tr>
-    </table>
-    <table id="goon2" class="tbodys" style="width: 100%">
-    </table>
-    <h2>3군</h2>
-    <hr>
-    <table id="head3" class="theader" style="width: 100%"
-    <tr>
-        <th scope="col" class="ssid">3군</th>
-        <th scope="col" class="song">Ochame Kinou</th>
-        <th scope="col" class="song">ROCKSTAR(TAK Remix)</th>
-        <th scope="col" class="song">Yell For the Dream! Patissiere’ (Short ver)</th>
-        <th scope="col" class="song">Muyaho</th>
-        <th scope="col" class="song">Ferocious Battlefield</th>
-        <th scope="col" class="song">In to the Night (ENG VER)</th>
-        <th scope="col" class="sum">합계</th>
-    </tr>
-    </table>
-    <table id="goon3" class="tbodys" style="width: 100%">
-    </table>
+    <div id="goon1div">
+        <h2>1군</h2>
+        <hr>
+        <table id="head1" class="theader" style="width: 100%">
+            <tr>
+                <th scope="col" class="ssid">1군</th>
+                <th scope="col" class="song">Butterfly Twist</th>
+                <th scope="col" class="song">T+ VS SHARK</th>
+                <th scope="col" class="song">Brain Power</th>
+                <th scope="col" class="song">Climax (Kobaryo’s FTN-Remix)	</th>
+                <th scope="col" class="song">Faithful dog “Hachi”</th>
+                <th scope="col" class="song">Date 2 (From “Your Name”)</th>
+                <th scope="col" class="sum">합계</th>
+            </tr>
+        </table>
+        <table id="goon1" class="tbodys" style="width: 100%">
+        </table>
+    </div>
+    <div id="goon2div">
+        <h2>2군</h2>
+        <hr>
+        <table id="head2" class="theader" style="width: 100%">
+            <tr>
+                <th scope="col" class="ssid">2군</th>
+                <th scope="col" class="song">社会距離 (feat.可不)</th>
+                <th scope="col" class="song">phony</th>
+                <th scope="col" class="song">Ultimate Ascension</th>
+                <th scope="col" class="song">Maze No.9</th>
+                <th scope="col" class="song">Chocolate Missile</th>
+                <th scope="col" class="song">Wocky - VS. Kapi Mod OST</th>
+                <th scope="col" class="sum">합계</th>
+            </tr>
+        </table>
+        <table id="goon2" class="tbodys" style="width: 100%">
+        </table>
+    </div>
+    <div id="goon3div">
+        <h2>3군</h2>
+        <hr>
+        <table id="head3" class="theader" style="width: 100%">
+            <tr>
+                <th scope="col" class="ssid">3군</th>
+                <th scope="col" class="song">Ochame Kinou</th>
+                <th scope="col" class="song">ROCKSTAR(TAK Remix)</th>
+                <th scope="col" class="song">Yell For the Dream! Patissiere’ (Short ver)</th>
+                <th scope="col" class="song">Muyaho</th>
+                <th scope="col" class="song">Ferocious Battlefield</th>
+                <th scope="col" class="song">In to the Night (ENG VER)</th>
+                <th scope="col" class="sum">합계</th>
+            </tr>
+        </table>
+        <table id="goon3" class="tbodys" style="width: 100%">
+        </table>
+    </div>
 </div>
 
 <script>
